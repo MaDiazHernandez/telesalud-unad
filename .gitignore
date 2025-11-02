@@ -1,0 +1,64 @@
+# ==========================================
+# BACKEND (Node.js)
+# ==========================================
+backend/node_modules/
+backend/.env
+backend/.env.local
+backend/dist/
+backend/build/
+backend/coverage/
+backend/*.log
+backend/npm-debug.log*
+
+# ==========================================
+# FRONTEND (Flutter)
+# ==========================================
+frontend/.dart_tool/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.packages
+frontend/.pub-cache/
+frontend/.pub/
+frontend/build/
+
+# Android
+frontend/**/android/.gradle
+frontend/**/android/captures/
+frontend/**/android/local.properties
+frontend/**/android/key.properties
+frontend/*.jks
+
+# iOS
+frontend/**/ios/Pods/
+frontend/**/ios/.symlinks/
+frontend/**/ios/Flutter/Generated.xcconfig
+frontend/**/ios/Flutter/flutter_export_environment.sh
+
+# ==========================================
+# BASE DE DATOS
+# ==========================================
+*.sql.backup
+*.dump
+*.db
+
+# ==========================================
+# SISTEMA OPERATIVO
+# ==========================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==========================================
+# IDEs
+# ==========================================
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# ==========================================
+# LOGS
+# ==========================================
+*.log
+logs/
