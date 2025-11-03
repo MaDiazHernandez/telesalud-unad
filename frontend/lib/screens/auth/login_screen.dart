@@ -228,31 +228,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   
-                  const SizedBox(height: 32),
-                  
-                  // Test credentials info
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.shade50,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.blue.shade200),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Credenciales de prueba:',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Colors.blue.shade900,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text('Admin: admin@telesalud.com / admin123'),
-                        const Text('Paciente: juan.perez@email.com / admin123'),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
