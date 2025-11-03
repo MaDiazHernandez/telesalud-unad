@@ -1,0 +1,19 @@
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=telesalud_db
+DB_USER=postgres
+DB_PASSWORD=tu_password_aqui
+
+# JWT Configuration
+JWT_SECRET=tu_secret_key_super_seguro_aqui
+JWT_EXPIRE=24h
+JWT_REFRESH_SECRET=tu_refresh_secret_aqui
+JWT_REFRESH_EXPIRE=7d
+
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+
+# CORS
+CORS_ORIGIN=*
