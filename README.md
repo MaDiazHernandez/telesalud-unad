@@ -270,8 +270,8 @@ flutter build ios --release
 | Sistema de Citas | 🚧 En desarrollo | 30% |
 | Consultas Médicas | 🚧 En desarrollo | 20% |
 | Videollamadas | 🚧 En desarrollo | 10% |
-| Notificaciones | ⏳ Pendiente | 100% |
-| Chat en Tiempo Real | ⏳ Pendiente | 100% |
+| Notificaciones | ✅ Completo | 100% |
+| Chat en Tiempo Real | ✅ Completo | 100% |
 
 ---
 
@@ -291,7 +291,7 @@ Si deseas contribuir:
 
 ## 👥 Equipo de Desarrollo
 
-**Proyecto de Grado - UNAD 2024**
+**Proyecto de Grado - UNAD 2025**
 
 - **Kevin Alberto Salas López** 
 - **Maria Fernanda Hernandez Diaz** 
