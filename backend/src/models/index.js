@@ -26,6 +26,7 @@ db.sequelize = sequelize;
 db.Usuario = require('./Usuario')(sequelize, Sequelize);
 db.Paciente = require('./Paciente')(sequelize, Sequelize);
 db.Profesional = require('./Profesional')(sequelize, Sequelize);
+db.ChatMessage = require('./chatmessage')(sequelize, Sequelize);
 
 // Definir relaciones
 db.Usuario.hasOne(db.Paciente, {
@@ -44,6 +45,13 @@ db.Usuario.hasOne(db.Profesional, {
 db.Profesional.belongsTo(db.Usuario, {
   foreignKey: 'usuario_id',
   as: 'usuario',
+});
+
+// Definir asociaciones
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
 });
 
 module.exports = db;

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "369656565782",
+    "project_id": "telesaludunad-e5240",
+    "storage_bucket": "telesaludunad-e5240.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369656565782:android:31445786682799383de537",
+        "android_client_info": {
+          "package_name": "com.unad.telesalud.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd0vHEIZaQyUbpZLbzImPMebzwO_VoBK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

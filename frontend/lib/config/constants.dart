@@ -5,8 +5,8 @@ class AppConstants {
   // ✅ Auto-detect backend base URL based on platform
   static String get baseUrl {
     if (kIsWeb) {
-      // 🖥️ Flutter Web: usa la IP local de tu PC (REEMPLAZADA con la tuya)
-      return 'http://192.168.18.144:3000/api';
+      // 🖥️ Flutter Web: usa localhost cuando corres localmente
+      return 'http://localhost:3000/api';
     } else if (Platform.isAndroid) {
       // 📱 Android Emulator: localhost es 10.0.2.2
       return 'http://10.0.2.2:3000/api';
@@ -19,7 +19,7 @@ class AppConstants {
   // ✅ WebSockets o sockets IO
   static String get socketUrl {
     if (kIsWeb) {
-      return 'http://192.168.18.144:3000';
+      return 'http://localhost:3000';
     } else if (Platform.isAndroid) {
       return 'http://10.0.2.2:3000';
     } else {

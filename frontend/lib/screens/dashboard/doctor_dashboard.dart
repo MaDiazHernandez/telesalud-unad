@@ -15,8 +15,16 @@ class DoctorDashboard extends StatelessWidget {
         title: const Text('Panel Médico'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.chat),
+            onPressed: () {
+              Navigator.pushNamed(context, '/chat-list');
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.notifications),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/notifications');
+            },
           ),
         ],
       ),

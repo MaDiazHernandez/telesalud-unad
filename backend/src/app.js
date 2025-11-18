@@ -2,9 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./config');
 const db = require('./models');
-const routes = require('./routes');
+const routes = require("./routes");
+const http = require("http");
+const initChatServer = require("./chat");
 
 const app = express();
+const server = http.createServer(app);
 
 // Middlewares
 app.use(cors(config.cors));
@@ -12,7 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rutas
-app.use('/api', routes);
+app.use("/api", routes);
+
+// Inicializar el servidor de chat
+initChatServer(server);
 
 // Ruta raíz
 app.get('/', (req, res) => {
@@ -49,7 +55,7 @@ db.sequelize
   .then(() => {
     console.log('✅ Modelos sincronizados');
     
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log('\n' + '='.repeat(50));
       console.log('🚀 Servidor corriendo en:');
       console.log(`   http://localhost:${PORT}`);
@@ -61,4 +67,4 @@ db.sequelize
     process.exit(1);
   });
 
-module.exports = app;
+module.exports = { app, server };

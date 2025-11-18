@@ -29,6 +29,7 @@ class AuthService {
       );
 
       print('✅ Respuesta del backend: ${response.data}');
+      print('✅ Status code: ${response.statusCode}');
 
       // Backend devuelve: { success, message, data: { usuario, token } }
       if (response.data['success'] == true && response.data['data'] != null) {
@@ -54,8 +55,9 @@ class AuthService {
         throw Exception(response.data['message'] ?? 'Error desconocido');
       }
     } catch (e) {
-      print('❌ Error en login: $e');
-      throw Exception('Error al iniciar sesión: $e');
+      print('❌ Error completo en login: $e');
+      print('❌ Tipo de error: ${e.runtimeType}');
+      rethrow; // Re-lanzar el error original
     }
   }
 

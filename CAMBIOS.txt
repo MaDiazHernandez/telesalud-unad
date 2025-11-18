@@ -1,0 +1,62 @@
+CAMBIOS REALIZADOS POR EDWIN LEONARDO MUÑOZ MARTÍNEZ
+Fecha: Noviembre 2025
+
+=== NUEVAS FUNCIONALIDADES IMPLEMENTADAS ===
+
+1. CHAT (frontend/lib/screens/chat/)
+   - chat_list_screen.dart: Lista de chats con modo demo
+   - chat_screen.dart: Pantalla de conversación
+   - Modo demo activo cuando Firebase no está configurado
+   - Contactos de ejemplo según rol de usuario
+
+2. NOTIFICACIONES (frontend/lib/screens/notifications/)
+   - notifications_screen.dart: Sistema completo de notificaciones
+   - Notificaciones diferenciadas por rol (paciente, médico, admin)
+   - Tipos: citas, mensajes, recordatorios, alertas
+   - Indicadores de leído/no leído
+
+3. HISTORIA CLÍNICA (frontend/lib/screens/medical_history/)
+   - medical_history_screen.dart: Historia clínica completa para pacientes
+   - 4 pestañas: Consultas, Diagnósticos, Medicamentos, Exámenes
+   - Datos de ejemplo estructurados
+   - Interfaz con expansión de detalles
+
+=== ARCHIVOS MODIFICADOS ===
+
+Backend:
+- backend/package.json: Agregada dependencia socket.io
+- backend/src/models/chatmessage.js: Corregidas referencias a modelo Usuario
+- backend/.env.example: Plantilla de variables de entorno
+
+Frontend:
+- frontend/lib/config/routes.dart: Rutas para chat, notificaciones e historia clínica
+- frontend/lib/config/constants.dart: URL del backend en localhost para web
+- frontend/lib/main.dart: Firebase Messaging deshabilitado en web
+- frontend/pubspec.yaml: firebase_messaging comentado temporalmente
+- frontend/lib/screens/dashboard/patient_dashboard.dart: Botones funcionales
+- frontend/lib/screens/dashboard/doctor_dashboard.dart: Botones funcionales
+- frontend/lib/screens/dashboard/admin_dashboard.dart: Botones funcionales
+
+=== CONFIGURACIÓN NECESARIA PARA COMPAÑEROS ===
+
+1. Backend:
+   - Crear archivo .env copiando .env.example
+   - Configurar DB_PASSWORD con su contraseña de PostgreSQL
+   - Ejecutar: npm install
+   - Ejecutar: npm run seed
+
+2. Frontend:
+   - Ejecutar: flutter pub get
+   - (Opcional) Configurar Firebase para chat en tiempo real
+
+=== USUARIOS DE PRUEBA ===
+- Administrador: admin@telesalud.com / admin123
+- Médico: juan.perez@telesalud.com / admin123
+- Paciente: ana.garcia@email.com / paci123
+
+=== NOTAS IMPORTANTES ===
+- El archivo backend/.env NO debe subirse a Git (está en .gitignore)
+- Firebase Messaging deshabilitado en web para evitar errores de service worker
+- Chat funciona en modo demo sin Firebase configurado
+- Notificaciones muestran datos de ejemplo por rol
+- Historia clínica solo visible para pacientes

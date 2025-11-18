@@ -1,37 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+// Configuración
 import 'package:frontend/config/theme.dart';
 import 'package:frontend/config/routes.dart';
+
+// Providers
 import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/core/services/api_service.dart';
 import 'package:frontend/core/services/storage_service.dart';
+
+// Pantallas
 import 'package:frontend/screens/auth/login_screen.dart';
+
+// 🔥 Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+// Chat Provider ✔
+import 'package:frontend/providers/chat_provider.dart';
+import 'package:frontend/services/notification_service.dart';
+import 'package:frontend/services/socket_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Initialize services
+
+  // Inicializar Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Inicializar servicios de tu app
   await StorageService().init();
   ApiService().init();
+
+  // Inicializar servicios de Notificaciones y Socket
+  // NOTA: Las notificaciones en web requieren configuración adicional de service worker
+  if (!kIsWeb) {
+    await NotificationService().initialize();
+  }
+  final socketService = SocketService();
   
-  runApp(const MyApp());
+  // Registrar el servicio de Socket en GetIt si lo usas, o pasarlo a los providers
+  // Si no usas GetIt, lo inyectaremos en MultiProvider.
+
+  runApp(MyApp(socketService: socketService));
+
+
+
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SocketService socketService;
+  const MyApp({super.key, required this.socketService});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ChatProvider()), // <-- AÑADIDO ✔
+        ChangeNotifierProvider.value(value: socketService),
       ],
       child: MaterialApp(
         title: 'Telesalud UNAD',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         home: const AuthenticationWrapper(),
-        routes: AppRoutes.getRoutes(),
+        routes: AppRoutes.getRoutes(), // <-- Tus rutas + la de chat ✔
       ),
     );
   }
@@ -54,7 +91,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   Future<void> _checkAuth() async {
     final authProvider = context.read<AuthProvider>();
     await authProvider.checkAuth();
-    
+
     if (mounted && authProvider.isAuthenticated) {
       _navigateToDashboard(authProvider.user!.rol);
     }
@@ -62,7 +99,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   void _navigateToDashboard(String role) {
     String route;
-    
+
     switch (role) {
       case 'administrador':
         route = AppRoutes.adminDashboard;
@@ -75,7 +112,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
         route = AppRoutes.patientDashboard;
         break;
     }
-    
+
     Navigator.pushReplacementNamed(context, route);
   }
 
@@ -83,7 +120,6 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, _) {
-        // Show loading while checking authentication
         if (authProvider.isLoading) {
           return const Scaffold(
             body: Center(
@@ -92,12 +128,11 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
           );
         }
 
-        // If authenticated, navigate to appropriate dashboard
         if (authProvider.isAuthenticated && authProvider.user != null) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             _navigateToDashboard(authProvider.user!.rol);
           });
-          
+
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -105,7 +140,6 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
           );
         }
 
-        // Not authenticated, show login
         return const LoginScreen();
       },
     );

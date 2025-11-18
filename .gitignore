@@ -1,6 +1,7 @@
 # ==========================================
 # BACKEND (Node.js)
 # ==========================================
+backend/firebase-adminsdk.json # Credenciales de Firebase - NO SUBIR!
 backend/node_modules/
 backend/.env
 backend/.env.local

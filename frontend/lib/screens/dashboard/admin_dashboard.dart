@@ -14,7 +14,18 @@ class AdminDashboard extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Panel Administrativo'),
         actions: [
-          IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.chat),
+            onPressed: () {
+              Navigator.pushNamed(context, '/chat-list');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.pushNamed(context, '/notifications');
+            },
+          ),
         ],
       ),
       drawer: _buildDrawer(context, user, authProvider),

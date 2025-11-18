@@ -23,9 +23,15 @@ class _PatientDashboardState extends State<PatientDashboard> {
         title: const Text('Telesalud'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.chat),
+            onPressed: () {
+              Navigator.pushNamed(context, '/chat-list');
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {
-              // TODO: Navigate to notifications
+              Navigator.pushNamed(context, '/notifications');
             },
           ),
           IconButton(
@@ -101,7 +107,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
               title: const Text('Historia Clínica'),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Navigate to medical history
+                Navigator.pushNamed(context, '/medical-history');
               },
             ),
             ListTile(
@@ -201,7 +207,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                   title: 'Historia Clínica',
                   color: Colors.orange,
                   onTap: () {
-                    // TODO: Navigate to medical history
+                    Navigator.pushNamed(context, '/medical-history');
                   },
                 ),
                 _buildQuickActionCard(

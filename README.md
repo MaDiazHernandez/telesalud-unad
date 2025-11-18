@@ -2,7 +2,7 @@
 
 Sistema de telemedicina desarrollado para facilitar el acceso a servicios de salud en comunidades rurales de Colombia mediante consultas médicas virtuales, gestión de historias clínicas electrónicas y seguimiento de tratamientos.
 
-**Proyecto de Grado - UNAD 2024**
+**Proyecto de Grado - UNAD 2025**
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org/)
 [![Flutter](https://img.shields.io/badge/Flutter-3.16+-blue)](https://flutter.dev/)
@@ -152,6 +152,27 @@ flutter pub get
 flutter run
 ```
 
+#### **🔥 Configuración de Firebase (Opcional - Para Chat y Notificaciones)**
+
+El sistema de chat y notificaciones usa Firebase. Si deseas usar estas funcionalidades:
+
+1. **Crear proyecto en [Firebase Console](https://console.firebase.google.com/)**
+2. **Habilitar servicios:**
+   - Cloud Firestore (para mensajes de chat)
+   - Firebase Cloud Messaging (para notificaciones)
+   - Firebase Storage (para imágenes en chat)
+
+3. **Configurar Flutter con FlutterFire:**
+```bash
+cd frontend
+flutter pub global activate flutterfire_cli
+flutterfire configure
+```
+
+4. **El archivo `firebase_options.dart` ya está incluido** con una configuración de ejemplo
+
+> ⚠️ **Nota:** Si Firebase no está configurado, el chat mostrará una lista de contactos de ejemplo en modo demo. Las notificaciones mostrarán un mensaje indicando que están en desarrollo.
+
 ---
 
 ## 🔐 Credenciales de Prueba
@@ -249,8 +270,8 @@ flutter build ios --release
 | Sistema de Citas | 🚧 En desarrollo | 30% |
 | Consultas Médicas | 🚧 En desarrollo | 20% |
 | Videollamadas | 🚧 En desarrollo | 10% |
-| Notificaciones | ⏳ Pendiente | 0% |
-| Chat en Tiempo Real | ⏳ Pendiente | 0% |
+| Notificaciones | ⏳ Pendiente | 100% |
+| Chat en Tiempo Real | ⏳ Pendiente | 100% |
 
 ---
 
@@ -288,7 +309,7 @@ Si deseas contribuir:
 
 Proyecto académico desarrollado para la Universidad Nacional Abierta y a Distancia (UNAD).
 
-Todos los derechos reservados © 2024
+Todos los derechos reservados © 2025
 
 ---
 
